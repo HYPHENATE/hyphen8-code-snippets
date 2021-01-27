@@ -1,0 +1,440 @@
+{
+    "foreach": {
+        "prefix": "h8sc-apex-for",
+        "body": [
+            "for (${1:Object} ${2:var}: ${3:list}){",
+            "	$0",
+            "}"
+        ],
+        "description": "foreach",
+    },
+
+    "foreachWithSelect": {
+        "prefix": "h8sc-apex-fors",
+        "body": [
+            "for (${1:Object} ${2:var}: [SELECT ${3:fields} FROM $1 WHERE ${4:where}]){",
+            "	$0",
+            "}"
+        ],
+        "description": "foreach with select",
+    },
+
+    "ifElse": {
+        "prefix": "h8sc-apex-ifelse",
+        "body": [
+            "if (${1:condition}){",
+            "	$0",
+            "} else {",
+            "	",
+            "}"
+        ],
+        "description": "if-else"
+    },
+
+    "switchWhen": {
+        "prefix": "h8sc-apex-switchWhen",
+        "body": [
+            "switch on expression {",
+            "    when value1 {",		
+            "        // code block 1",
+            "    }",
+            "    when value2 {",		
+            "        // code block 2",
+            "    }",
+            "    when value3 {",
+            "        // code block 3",
+            "    }",
+            "    when else {",
+            "        // code block 4",
+            "    }"
+        ],
+        "description": "Apex provides a switch statement that tests whether an expression matches one of several values and branches accordingly."
+    },
+
+    "debug": {
+        "prefix": "h8sc-apex-debug",
+        "body": [
+            "System.debug('$1: ' + ${1:var});"
+        ]
+    },
+
+    "var": {
+        "prefix": "h8sc-apex-var",
+        "body": [
+            "${1:Instance} ${2:var} = new $1();"
+        ]
+    },
+
+    "map": {
+        "prefix": "h8sc-apex-map",
+        "body": [
+            "Map<Id,${1:Instance}> ${2:var} = new Map<Id,$1>();"
+        ]
+    },
+
+    "list": {
+        "prefix": "h8sc-apex-list",
+        "body": [
+            "List<${1:Instance}> ${2:var} = new List<$1>();"
+        ]
+    },
+
+    "set": {
+        "prefix": "h8sc-apex-set",
+        "body": [
+            "Set<${1:Instance}> ${2:var} = new Set<$1>();"
+        ]
+    },
+
+    "constant": {
+        "prefix": "h8sc-apex-constant",
+        "body": [
+            "private static final String CONST_${1:name} = '${2:text}';"
+        ]
+    },
+
+    "soql-list": {
+        "prefix": "h8sc-apex-soql-list",
+        "body": [
+            "List<${1:Object}> ${2:var} = [SELECT ${3:fields} FROM $1 WHERE ${4:where}];"
+        ]
+    },
+
+    "soql-map": {
+        "prefix": "h8sc-apex-soql-map",
+        "body": [
+            "Map<Id, ${1:Object}> ${2:var} = [SELECT ${3:fields} FROM $1 WHERE ${4:where}];"
+        ],
+        "description" : "an example of how to create a SOQL Map"
+    },
+
+    "soql": {
+        "prefix": "h8sc-apex-soql",
+        "body": [
+            "[SELECT ${1:fields} FROM ${2:Object:} WHERE ${3:where}]"
+        ]
+    },
+
+    "http-request": {
+        "prefix": "h8sc-apex-request",
+        "body": [
+            "Http http = new Http();",
+            "HttpRequest req = new HttpRequest();",
+            "req.setEndpoint('${1:endpoint}');",
+            "req.setMethod('${2:method}');",
+            "req.setHeader('${3:header}');",
+            "HttpResponse res = http.send(req);",
+            "if(res.getStatusCode() == 200){",
+            "	$0",
+            "} else{",
+            "	",
+            "}"
+        ]
+    },
+
+    "schedulable-class": {
+        "prefix": "h8sc-apex-schedulable-class",
+        "body": [
+            "global class scheduledBatchable implements Schedulable {",
+            "   global void execute(SchedulableContext sc) {",
+            "      batchable b = new batchable();",
+            "      database.executebatch(b);",
+            "   }",
+            "}"
+        ]
+    },
+
+    "autoScheduleBatch": {
+        "prefix": "h8sc-apex-autoScheduleBatch",
+        "body": [
+            "System.scheduleBatch(new ${1:batch}(), 'Job $1' + system.now().format('dd.MM.yyyy-HH.mm.ss.SSS'), ${2:minutesFromNow}, ${3:batchSize});"
+        ]
+    },
+
+    "start-batch": {
+        "prefix": "h8sc-apex-batch-execute",
+        "body": [
+            "${1:batch class} batch = new $1();",
+            "Database.executeBatch(batch,${2:size});"
+        ]
+    },
+
+    "dml-database": {
+        "prefix": "h8sc-apex-dml h8sc-apex-dml-saveResult",
+        "body": [
+            "Database.SaveResult result = Database.${1:DML}(${2:var}, false);",
+            "if (!result.isSuccess()) {",
+            "	for (Database.Error err : result.getErrors()) {",
+            "		mensagemGenerica = err.getMessage();",
+            "	}",
+            "} else {",
+            "	$0",
+            "}"
+        ],
+        "description": "DML's with SaveResul single record"
+    },
+    
+    "dml-list": {
+        "prefix": "h8sc-apex-dml-list h8s-apex-dml-saveResult-list",
+        "body": [
+            "Database.SaveResult[] srList = Database.${1:DML}(${2:var}, false);",
+            "for (Database.SaveResult sr : srList) {",
+            "   if (!result.isSuccess()) {",
+            "	    for (Database.Error err : result.getErrors()) {",
+            "		    mensagemGenerica = err.getMessage();",
+            "	    }",
+            "   } else {",
+            "	    $0",
+            "   }"
+            "}"
+        ],
+        "description": "DML's with SaveResul[]"
+    },
+    
+    "getRecordTypeId": {
+        "prefix": "h8sc-apex-getRecordTypeId",
+        "body": [
+            "Id idRecType$2 = Schema.SObjectType.${1:Object}.getRecordTypeInfosByDeveloperName().get('${2:Developer_Name}').getRecordTypeId();"
+        ],
+        "Description": "Get RecordType ID based on object and Developer Name"
+    },
+
+    "approvalProcess": {
+        "prefix": "h8sc-apex-approvalProcess",
+        "body": [
+            "Approval.ProcessSubmitRequest ${1:approvalRequest} = new Approval.ProcessSubmitRequest();",
+            "$1.setObjectId(${2:Id objectId});",
+            "$1.setSubmitterId(${3:Id userId});",
+            "$1.setProcessDefinitionNameOrId(${4:String approvalProcessApiMName});",
+            "$1.setSkipEntryCriteria(true);",
+            "Approval.ProcessResult processResult = Approval.process($1, false);"
+        ]
+    },
+
+    "deserialize": {
+        "prefix": "h8sc-apex-deserialize",
+        "body": [
+            "${1:objectType} response = ($1) JSON.deserialize(${2:jsonResponse}, $1.class);"
+        ]
+    },
+
+    "deserializeUntyped": {
+        "prefix": "h8sc-apex-deserializeUntyped",
+        "body": [
+            "Map<String, Object> ${1:response} = (Map<String, Object>) JSON.deserializeUntyped(${2:jsonResponse});"
+        ]
+    },
+
+    "serialize": {
+        "prefix": "h8sc-apex-serialize",
+        "body": [
+            "JSON.serialize(${1:var})$0"
+        ]
+    },
+
+    "ifMapContainsKey": {
+        "prefix": "h8sc-apex-ifcontainsKey h8cs-apex-ifMapContainsKey",
+        "body": [
+            "if (${1:map}.containsKey()) {",
+            "	$0",
+            "}"
+        ]
+    },
+
+    "batchClass": {
+        "prefix": "h8sc-apex-batchClass h8sc-apex-newBatchClass",
+        "body": [
+            "global class ${1:nomeBatch} implements Database.Batchable<sObject>, Database.AllowsCallouts {",
+            "",
+            "    global List<${2:Object}> start(Database.BatchableContext jobId) {",
+            "        List<$2> recordList = new List<$2>();",
+            "        recordList = [SELECT ${3:fields}",
+            "                      FROM $2",
+            "                      WHERE ${4:conditions}];",
+            "        return recordList;",
+            "    }",
+            "",
+            "    global void execute(Database.BatchableContext jobId, List<$2> recordList) {",
+            "        $0",
+            "    }",
+            "",
+            "    global void finish(Database.BatchableContext jobIdParam) {",
+            "        list<CronTrigger> ct = [SELECT CronExpression, CronJobDetailId, CronJobDetail.Name, Id, State FROM CronTrigger WHERE CronJobDetail.Name like '%$1%'];",
+            "        list<AsyncApexJob> apJb = [SELECT TotalJobItems,JobItemsProcessed,NumberOfErrors,CreatedDate,CompletedDate,ExtendedStatus",
+            "                                   FROM AsyncApexJob where ApexClass.Name = '$1'",
+            "                                   ORDER BY CompletedDate desc limit 1];",
+            "        if(ct.size()>0) {",
+            "            System.abortJob(ct[0].id);",
+            "        }",
+            "        if(apJb.size()>0) {",
+            "            if(apJb[0].NumberOfErrors <> 0){",
+            "                Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();",
+            "                message.toAddresses = new String[] { '${5:your@email.com}'};",
+            "                message.subject = 'Erro no batch $1';",
+            "                message.plainTextBody = 'Erro no batch $1: '+apJb[0].TotalJobItems+'\\r\\n'+ 'Lotes Processados: '+apJb[0].JobItemsProcessed+'\\r\\n'+ 'Falhas: '+apJb[0].NumberOfErrors+'\\r\\n'+ 'Data do Envio: '+apJb[0].CreatedDate+'\\r\\n'+ 'Data de Conclusão: '+apJb[0].CompletedDate+'\\r\\n'+'Msg de Erro: '+apJb[0].ExtendedStatus;",
+            "                Messaging.SingleEmailMessage[] messages = new List<Messaging.SingleEmailMessage> {message};",
+            "                if(!Test.isRunningTest()){",
+            "                    Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);",
+            "                    if (results[0].success) {",
+            "                        System.debug('O email foi enviado com sucesso');",
+            "                    } else {",
+            "                        System.debug('Houve falha no envio do email: ' + results[0].errors[0].message);",
+            "                    }",
+            "                }",
+            "            }",
+            "        }",
+            "        if(!Test.isRunningTest()) {",
+            "            System.scheduleBatch(new $1(), 'Job $1' + system.now().format('dd.MM.yyyy-HH.mm.ss.SSS'),${6:minutesFromNow}, ${7:batchSize});",
+            "        }",
+            "    }",
+            "}"
+        ]
+    },
+
+    "wrapperCustomItem": {
+        "prefix": "h8sc-apex-wrapper-custom-item h8sc-apex-wrapper-custom-field",
+        "body": [
+            "public ${1:InnerClass} ${2:name} { get; set; }",
+            "",
+            "public class $1 {",
+            "    $0",
+            "}"
+        ]
+    },
+
+    "wrapperItem": {
+        "prefix": "h8sc-apex-wrapper-item h8sc-apex-wrapper-field",
+        "body": [
+            "public ${1:Object} ${2:name} { get; set; }"
+        ]
+    },
+
+    "auraInnerClass": {
+        "prefix": "h8sc-apex-wrapper-aura",
+        "body": [
+            "public class ${1:className}  {",
+            "   @AuraEnabled public ${2:type} ${3:var};",
+            "}"
+        ]
+    },
+
+    "emailMessage":{
+        "prefix": "h8sc-apex-emailMessage",
+        "body": [
+            "Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();",
+            "message.setTargetObjectId(${1:target}.id);",
+            "message.setOrgWideEmailAddressId([SELECT Id FROM OrgWideEmailAddress WHERE Address = '${2:sender@email.com}' LIMIT 1].Id);",
+            "message.setTemplateID([SELECT Id FROM EmailTemplate WHERE DeveloperName ='${3:template_developer_name' LIMIT 1].Id);",
+            "message.setWhatId(${4:what.id});",
+            "message.setSaveAsActivity(${5:trueORfalse});",
+            "Messaging.SingleEmailMessage[] messages = new List<Messaging.SingleEmailMessage> {message};",
+            "Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);",
+            "if (results[0].success) {",
+                "System.debug('The email was sent successfully.');",
+            "} else{",
+                "System.debug('The email failed to send: ' + results[0].errors[0].message);",
+            "}"
+        ]
+    },
+
+    "emailMessage-withEmailList":{
+        "prefix": "h8sc-apex-emailMessage-emailList",
+        "body": [
+            "Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();",
+            "message.toAddresses = new List<String> {'${1:recipient@email.com}'};",
+            "message.setOrgWideEmailAddressId([SELECT Id FROM OrgWideEmailAddress WHERE Address = '${2:sender@email.com}' LIMIT 1].Id);",
+            "message.setTemplateID([SELECT Id FROM EmailTemplate WHERE DeveloperName ='${3:template_developer_name' LIMIT 1].Id);",
+            "message.setWhatId(${4:what.id});",
+            "message.setSaveAsActivity(${5:trueORfalse});",
+            "Messaging.SingleEmailMessage[] messages = new List<Messaging.SingleEmailMessage> {message};",
+            "Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);",
+            "if (results[0].success) {",
+                "System.debug('The email was sent successfully.');",
+            "} else{",
+                "System.debug('The email failed to send: ' + results[0].errors[0].message);",
+            "}"
+        ]
+    },
+
+    "emailSimplest":{
+        "prefix": "h8sc-apex-emailSimplest",
+        "body": [
+            "Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();",
+            "message.toAddresses = new String[] { '${1:recipient@email.com}'};",
+            "message.subject = '${2:subject}';",
+            "message.plainTextBody = '${2:body}';",
+            "Messaging.SingleEmailMessage[] messages = new List<Messaging.SingleEmailMessage> {message};",
+            "Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);",
+            "if (results[0].success) {",
+                "System.debug('The email was sent successfully.');",
+            "} else{",
+                "System.debug('The email failed to send: ' + results[0].errors[0].message);",
+            "}"
+        ]
+    },
+
+    "task":{
+        "prefix": "h8sc-apex-task",
+        "body": [
+            "Task task = new Task();",
+            "task.Description = ${1:description};",
+            "task.Subject = ${2:subject};",
+            "task.Status = ${3:status};",
+            "task.Priority = ${4:priority};",
+            "task.ActivityDate = Date.today();",
+            "task.WhatId = ${5:whatId};",
+            "task.IsReminderSet = false;",
+            "Insert task;"
+        ]
+    },
+
+    "sosl": {
+        "prefix": "h8sc-apex-sosl",
+        "body": [
+            "List<List<SObject>> searchList = [FIND '${1:text}' IN ALL FIELDS RETURNING ${2:Object}(${3:fields})];"
+        ],
+        "description": "SOSL query. Ex.: List<List<SObject>> searchList = [FIND 'SFDC' IN ALL FIELDS RETURNING Account(Name), Contact(FirstName,LastName)];"
+    },
+
+    "try-catch": {
+        "prefix": "h8sc-apex-try-catch h8sc-apex-trycatch",
+        "body": [
+            "try {",
+            "   ${0}",
+            "} catch (Execption  e) {",
+            "   System.debug('e.getMessage(): ' + e.getMessage());",
+            "   System.debug('e.getStackTraceString(): ' + e.getStackTraceString());",
+            "}"
+        ] 
+    },
+
+    "isBlank": {
+        "prefix": "h8sc-apex-isBlank",
+        "body": [
+            "String.isBlank(${1:var})"
+        ]
+    },
+
+    "isNotBlank": {
+        "prefix": "h8sc-apex-isNotBlank",
+        "body": [
+            "String.isNotBlank(${1:var})"
+        ]
+    },
+
+    "triggerIsInBatch": {
+        "prefix": "h8sc-trigger-inBatchCheck",
+        "body" : [
+            "boolean triggerInBatch = System.isBatch();"
+        ],
+        "description" : "boolean for use when wanting to check if a record being triggered is in a batch"
+    },
+    "triggerIsInFuture": {
+        "prefix": "h8sc-trigger-inFutureCheck",
+        "body" : [
+            "boolean triggerInFuture = System.isFuture();"
+        ],
+        "description" : "boolean for use when wanting to check if a record being triggered is in a future"
+    }
+
+}

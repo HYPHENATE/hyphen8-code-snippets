@@ -1,0 +1,58 @@
+{
+    "div-slds-center": {
+        "prefix": "h8sc-html-div-center",
+        "body": [
+            "<div class=\"slds-align_absolute-center\" style=\"height:5rem\">",
+            "   This content will be positioned in the absolute center of its container",
+            "</div>"
+        ],
+        "description": "Lightning Design System CSS for Center Aligning text within a div"
+    },
+
+    "grid-col-2": {
+        "prefix": "h8sc-html-grid-2-gutters",
+        "body": [
+            "<div class=\"slds-grid slds-gutters\">",
+            "    <div class=\"slds-col\">",
+            "        <span>1</span>",
+            "    </div>",
+            "    <div class=\"slds-col\">",
+            "        <span>2</span>",
+            "</div>"
+        ],
+        "description": "Lightning Design System 2 column grid with gutters"
+    },
+
+    "grid-col-3": {
+        "prefix": "h8sc-html-grid-3-gutters",
+        "body": [
+            "<div class=\"slds-grid slds-gutters\">",
+            "    <div class=\"slds-col\">",
+            "        <span>1</span>",
+            "    </div>",
+            "    <div class=\"slds-col\">",
+            "        <span>2</span>",
+            "    </div>",
+            "    <div class=\"slds-col\">",
+            "        <span>3</span>",
+            "    </div>",
+            "</div>"
+        ],
+        "description": "Lightning Design System 3 column grid with gutters"
+    },
+
+
+    "lwc-loader": {
+        "prefix": "h8sc-lwc-loader",
+        "body": [
+            "<template if:false={isLoaded}>",
+            "    <div class=\"slds-align_absolute-center\" style=\"height:5rem\">",
+            "        <lightning-spinner",
+            "            alternative-text=\"Loading...\" variant=\"brand\">",
+            "        </lightning-spinner>",
+            "    </div>",
+            "<template>"
+        ],
+        "description": "LWC Loader Example"
+    }
+}

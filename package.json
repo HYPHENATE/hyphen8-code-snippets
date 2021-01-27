@@ -1,0 +1,43 @@
+{
+    "name": "hyphen8-code-snippets",
+    "displayName": "Hyphen8 Code Snippets",
+    "description": "Custom snippets for Hyphen8 Staff",
+    "version": "1.0.0",
+    "publisher": "Hyphen8 Ltd",
+    "icon": "icon.png",
+    "galleryBanner": {
+        "color": "#C80000",
+        "theme": "dark"
+    },
+    "homepage": "https://github.com/HYPHEN8/hyphen8-code-snippets/blob/master/README.md",
+    "bugs": {
+        "url": "https://github.com/HYPHEN8/hyphen8-code-snippetsissues",
+        "email": "daniel@hyphen8.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/HYPHEN8/hyphen8-code-snippets"
+    },
+    "engines": {
+        "vscode": "^1.41.0"
+    },
+    "categories": [
+        "Snippets"
+    ],
+    "contributes": {
+        "snippets": [
+            {
+                "language": "html",
+                "path": "./snippets/html.json"
+            },
+            {
+                "language": "javascript",
+                "path": "./snippets/javascript.json"
+            },
+            {
+                "language": "apex",
+                "path": "./snippets/apex.json"
+            }
+        ]
+    }
+}

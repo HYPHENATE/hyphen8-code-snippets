@@ -1,0 +1,21 @@
+{
+    "apexImport": {
+        "prefix": "h8cs-js-apexImport",
+        "body": [
+            "functionName() {",
+            "   apexImportMethod({",
+            "       recordId: this.recordId",
+            "    })",
+            "    .then((results) => {",
+            "       console.log('results > ' + JSON.stringify(results));",
+            "        this.errors = undefined;",
+            "    })",
+            "    .catch((error) => {",
+            "       console.error('error functionName > ' + JSON.stringify(error));",
+            "        this.errors = JSON.stringify(error);",
+            "   });",
+            "}"
+        ],
+        "description" : "example for getting an apex method with a then catch statement"
+    }
+}
