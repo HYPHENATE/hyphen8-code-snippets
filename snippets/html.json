@@ -51,8 +51,40 @@
             "            alternative-text=\"Loading...\" variant=\"brand\">",
             "        </lightning-spinner>",
             "    </div>",
-            "<template>"
+            "</template>"
         ],
         "description": "LWC Loader Example"
-    }
+    },
+
+    "lwc-lightningcard": {
+        "prefix": "h8sc-lwc-lightningcard",
+        "body": [
+            "<lightning-card>",
+            "   <h1 slot=\"title\">This is a title</h1>",
+            "   <lightning-button-group slot=\"actions\">",
+            "       <lightning-button label=\"Edit\"></lightning-button>",
+            "       <lightning-button label=\"Delete\"></lightning-button>",
+            "   </lightning-button-group>",
+            "   <div class=\"slds-p-horizontal_small\">Card Body (custom component)</div>",
+            "   <div slot=\"footer\">",
+            "       <h6>This is the footer</h6>",
+            "   </div>",
+            "</lightning-card>",
+        ],
+        "description": "LWC Basic populated lightning card example"
+    },
+
+    "lwc-lightningdatatable": {
+        "prefix": "h8sc-lwc-datatable",
+        "body": [
+            "<div style=\"height: 300px;\">",
+            "   <lightning-datatable",
+            "       key-field=\"id\"",
+            "       data={data}",
+            "       columns={columns}>",
+            "   </lightning-datatable>",
+            "</div>"
+        ],
+        "description": "LWC Datatable Example HTML"
+    },
 }
