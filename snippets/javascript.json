@@ -7,15 +7,31 @@
             "       recordId: this.recordId",
             "    })",
             "    .then((results) => {",
-            "       console.log('results > ' + JSON.stringify(results));",
+            "        console.log('results > ' + JSON.stringify(results));",
             "        this.errors = undefined;",
             "    })",
             "    .catch((error) => {",
-            "       console.error('error functionName > ' + JSON.stringify(error));",
+            "        console.error('error functionName > ' + JSON.stringify(error));",
             "        this.errors = JSON.stringify(error);",
             "   });",
             "}"
         ],
-        "description" : "example for getting an apex method with a then catch statement"
+        "description" : "example for getting an apex method with a then catch statement requires the apex method importing"
+    },
+
+    "wireService": {
+        "prefix": "h8cs-js-wireService",
+        "body": [
+            "@api recordId;",
+            "recordFields = [",
+            "    ACCOUNT_NAME_FIELD,",
+            "    ACCOUNT_ID_FIELD",
+            "];",
+            "",
+            "",
+            "@wire(getRecord, { recordId: '$recordId', fields: recordFields })",
+            "record;"
+        ],
+        "description": "basic example of an @wire service will need get Record from the lightning/uiRecordApi and wire import"
     }
 }

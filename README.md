@@ -43,14 +43,20 @@ This is extension has been created to streamline and simplify development proces
 - h8sc-apex-try-catch h8sc-apex-trycatch
 - h8sc-apex-isBlank
 - h8sc-apex-isNotBlank
-- triggerIsInBatch
-- triggerIsInFuture
+- h8sc-trigger-inBatchCheck
+- h8sc-trigger-inFutureCheck
 
 ### HTML snippets
 - h8sc-html-div-center
 - h8sc-html-grid-2-gutters
 - h8sc-html-grid-3-gutters
 - h8sc-lwc-loader
+- h8sc-lwc-lightningcard
+- h8sc-lwc-datatable
+- h8sc-lwc-editform
+- h8sc-lwc-modalbase
+- h8sc-lwc-buttongroup
 
 ### JAVASCRIPT snippets
 - h8cs-js-apexImport
+- h8cs-js-wireService
