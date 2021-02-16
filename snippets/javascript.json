@@ -33,5 +33,58 @@
             "record;"
         ],
         "description": "basic example of an @wire service will need get Record from the lightning/uiRecordApi and wire import"
+    },
+
+    "fileupload": {
+        "prefix": "h8sc-js-fileUpload",
+        "body": [
+            "// set recordId of the record you are on",
+            "@api recordId;",
+            "// set a dynamic label for the upload field",
+            "dynamicLabel = 'EXAMPLE LABEL'",
+            "// set a dynamic filename for the upload",
+            "dynamicFileName = 'EXAMPLE FILENAME'",
+            "// set if you want to allow multiple files",
+            "allowMultipleFiles = true",
+            "// set accepted upload file formats",
+            "get acceptedFormats() {",
+            "   return ['.pdf', '.png'];",
+            "}",
+            "// hanle the actual fileupload actions",
+            "handleUploadFinished(event) {",
+            "    // Get the list of uploaded files",
+            "    const uploadedFiles = event.detail.files;",
+            "    console.log(\"No. of files uploaded : \" + uploadedFiles.length);",
+            "}"
+        ],
+        "description": "example JS for handling file upload Events"
+    },
+
+    "dispatchevent": {
+        "prefix": "h8sc-js-dispatchEvent",
+        "body": [
+            "// generic dispatch event function",
+            "// eventName should always be in lowercase and you need a oneventName to receive it",
+            "// eventDetail can be anything you want detail: contactID",
+            "dispatchEventFunction(eventName, eventDetail) {",
+            "   this.dispatchEvent(new CustomEvent(eventName, { eventDetail }); ",
+            "}"
+        ],
+        "description": "A basic reusable dispatch event you pass in the name of the event and the detail"
+    },
+
+    "showtoast": {
+        "prefix": "h8sc-js-showToast",
+        "body": [
+            "// generic dispatch toast event",
+            "// requires \"import { ShowToastEvent } from 'lightning/platformShowToastEvent';\" above your export in the JS File",
+            "// toastTitle is the title of your toast",
+            "// toastMessage is the message you want to output",
+            "// toastVariant can be error, warning, success, info which controls the colour of the toast",
+            "showToast(toastTitle, toastMessage, toastVariant){",
+            "   this.dispatchEvent(new ShowToastEvent({title: toastTitle, message: toastMessage, variant: toastVariant});",
+            "}"
+        ],
+        "description": "A generic show toast function you need to import ShowToastEvent for it to work"
     }
 }

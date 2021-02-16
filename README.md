@@ -56,7 +56,11 @@ This is extension has been created to streamline and simplify development proces
 - h8sc-lwc-editform
 - h8sc-lwc-modalbase
 - h8sc-lwc-buttongroup
+- h8sc-lwc-fileupload
 
 ### JAVASCRIPT snippets
 - h8cs-js-apexImport
 - h8cs-js-wireService
+- h8sc-js-fileUpload
+- h8sc-js-dispatchEventFunction
+- h8sc-js-showToast

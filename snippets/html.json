@@ -13,11 +13,12 @@
         "prefix": "h8sc-html-grid-2-gutters",
         "body": [
             "<div class=\"slds-grid slds-gutters\">",
-            "    <div class=\"slds-col\">",
-            "        <span>1</span>",
-            "    </div>",
-            "    <div class=\"slds-col\">",
-            "        <span>2</span>",
+            "   <div class=\"slds-col\">",
+            "       <span>1</span>",
+            "   </div>",
+            "   <div class=\"slds-col\">",
+            "       <span>2</span>",
+            "   </div>",
             "</div>"
         ],
         "description": "Lightning Design System 2 column grid with gutters"
@@ -69,7 +70,7 @@
             "   <div slot=\"footer\">",
             "       <h6>This is the footer</h6>",
             "   </div>",
-            "</lightning-card>",
+            "</lightning-card>"
         ],
         "description": "LWC Basic populated lightning card example"
     },
@@ -150,7 +151,8 @@
             "           <button class=\"slds-button slds-button_brand\">Save</button>",
             "       </footer>",
             "   </div>",
-            "</section>"
+            "</section>",
+            "<div class=\"slds-backdrop slds-backdrop_open\"></div>"
         ],
         "description": "Base Lightning design system modal"
     },
@@ -165,5 +167,20 @@
             "</lightning-button-group>"
         ],
         "description": "Base button group example"
+    },
+
+    "lwc-fileupload": {
+        "prefix": "h8sc-lwc-fileupload",
+        "body": [
+            "<lightning-file-upload",
+            "   label={dynamicLabel}",
+            "   name={dynamicFileName}",
+            "   accept={acceptedFormats}",
+            "   record-id={recordId}",
+            "   onuploadfinished={handleUploadFinished}",
+            "   multiple={allowMultipleFiles}>",
+            "</lightning-file-upload>"
+        ],
+        "description": "Base file upload example will require file upload JS check h8sc-js-fileUpload for associated JS"
     }
 }

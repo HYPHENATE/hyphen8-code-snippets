@@ -429,6 +429,7 @@
         ],
         "description" : "boolean for use when wanting to check if a record being triggered is in a batch"
     },
+    
     "triggerIsInFuture": {
         "prefix": "h8sc-trigger-inFutureCheck",
         "body" : [
