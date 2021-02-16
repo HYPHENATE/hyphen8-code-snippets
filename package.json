@@ -2,11 +2,11 @@
     "name": "hyphen8-code-snippets",
     "displayName": "Hyphen8 Code Snippets",
     "description": "Custom snippets for Hyphen8 Staff",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "publisher": "Hyphen8Labs",
     "icon": "icon.png",
     "galleryBanner": {
-        "color": "#C80000",
+        "color": "#2e999e",
         "theme": "dark"
     },
     "homepage": "https://github.com/HYPHENATE/hyphen8-code-snippets/blob/master/README.md",
